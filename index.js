@@ -29,7 +29,8 @@ app.get('/wetter', async (req, res) => {
 
     wApi = [];
     /* Allow CORS from AngularJS SPA. */
-    res.set('Access-Control-Allow-Origin', `http://${APP_URL}:${APP_PORT}`);
+    //res.set('Access-Control-Allow-Origin', `http://${APP_URL}:${APP_PORT}`);
+    res.set('Access-Control-Allow-Origin', `http://${LOCAL_URL}:${APP_PORT}`);
     var city = req.query.city;
     if(!city){
         res.status(400).send({message: 'Specify a city!'})
