@@ -3,10 +3,11 @@ const app = express();
 const http = require('http');
 require('dotenv').config();
 
-const LOCAL_URL = '127.0.0.1';
-const LOCAL_PORT = 8080;
-const APP_URL = '127.0.0.1';
-const APP_PORT = 5500;
+//const LOCAL_URL = '127.0.0.1';
+const LOCAL_URL = process.env.LOCAL_URL;
+const LOCAL_PORT = process.env.LOCAL_PORT;
+const APP_URL = process.env.APP_URL;
+const APP_PORT = process.env.APP_PORT;
 
 var wApi = [];
 async function getWeather(weather_url) {
