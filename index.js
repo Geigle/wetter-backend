@@ -22,12 +22,12 @@ app.use(express.json());
 
 app.listen(
     LOCAL_PORT,
-    () => console.log(`Backend alive on ${LOCAL_URL}:${LOCAL_PORT}`)
+    () => console.log(`Backend alive on http://${LOCAL_URL}:${LOCAL_PORT}`)
 );
 
-app.get('/', (req,rs) => {
+app.get('/', (req,res) => {
     res.status(200).send({ status: 'OK' });
-})
+});
 
 app.get('/wetter', async (req, res) => {
 
