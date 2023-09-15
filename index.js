@@ -26,12 +26,14 @@ app.listen(
 );
 
 app.get('/', (req,res) => {
+    console.log('Status request');
     res.status(200).send({ status: 'OK' });
 });
 
 app.get('/wetter', async (req, res) => {
 
     wApi = [];
+    console.log(req.originalUrl);
     /* Allow CORS from AngularJS SPA. */
     //res.set('Access-Control-Allow-Origin', `http://${APP_URL}:${APP_PORT}`);
     res.set('Access-Control-Allow-Origin', `http://${LOCAL_URL}:${APP_PORT}`);
