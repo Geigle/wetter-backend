@@ -25,6 +25,10 @@ app.listen(
     () => console.log(`Backend alive on ${LOCAL_URL}:${LOCAL_PORT}`)
 );
 
+app.get('/', (req,rs) => {
+    res.status(200).send({ status: 'OK' });
+})
+
 app.get('/wetter', async (req, res) => {
 
     wApi = [];
