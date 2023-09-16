@@ -4,9 +4,9 @@ const http = require('http');
 require('dotenv').config();
 
 //const LOCAL_URL = '127.0.0.1';
-const LOCAL_URL = process.env.LOCAL_URL;
-const LOCAL_PORT = process.env.LOCAL_PORT;
+const LOCAL_PORT = process.env.PORT;
 const APP_PORT = process.env.APP_PORT;
+const APP_URL = process.env.APP_URL;
 
 var wApi = [];
 async function getWeather(weather_url) {
@@ -32,7 +32,7 @@ app.get('/wetter', async (req, res) => {
     console.log(req.originalUrl);
     /* Allow CORS from AngularJS SPA. */
     //res.set('Access-Control-Allow-Origin', `http://${APP_URL}:${APP_PORT}`);
-    res.set('Access-Control-Allow-Origin', `http://${LOCAL_URL}:${APP_PORT}`);
+    res.set('Access-Control-Allow-Origin', `http://${APP_URL}:${APP_PORT}`);
     var city = req.query.city;
     if(!city){
         res.status(400).send({message: 'Specify a city!'})
