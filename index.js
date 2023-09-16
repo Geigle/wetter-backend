@@ -6,7 +6,6 @@ require('dotenv').config();
 //const LOCAL_URL = '127.0.0.1';
 const LOCAL_URL = process.env.LOCAL_URL;
 const LOCAL_PORT = process.env.LOCAL_PORT;
-const APP_URL = process.env.APP_URL;
 const APP_PORT = process.env.APP_PORT;
 
 var wApi = [];
@@ -20,18 +19,15 @@ async function getWeather(weather_url) {
 
 app.use(express.json());
 
-app.listen(
-    LOCAL_PORT,
-    () => console.log(`Backend alive on http://${LOCAL_URL}:${LOCAL_PORT}`)
-);
 
 app.get('/', (req,res) => {
     console.log('Status request');
-    res.status(200).send({ status: 'OK' });
+    res.status(200).send(JSON.stringify({ status: 'OK' }));
 });
 
 app.get('/wetter', async (req, res) => {
 
+    console.log('/wetter');
     wApi = [];
     console.log(req.originalUrl);
     /* Allow CORS from AngularJS SPA. */
@@ -49,5 +45,12 @@ app.get('/wetter', async (req, res) => {
     let url = `http://api.weatherapi.com/v1/forecast.json?key=${process.env.WEATHERAPIKEY}&q=${city}&days=${days}&aqi=no`;
     await getWeather(url);
 
+    console.log(wApi[0]);
+
     res.status(200).send( wApi[0] );
 });
+
+app.listen(
+    LOCAL_PORT,
+    () => console.log(`Backend alive on port ${LOCAL_PORT}`)
+);
